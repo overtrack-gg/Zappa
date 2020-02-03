@@ -4,8 +4,11 @@ from setuptools import setup
 from io import open
 from zappa import __version__
 
-with open('README.md') as readme_file:
-    long_description = readme_file.read()
+try:
+    with open('README.md') as readme_file:
+        long_description = readme_file.read()
+except:
+    long_description = None
 
 with open(os.path.join(os.path.dirname(__file__), 'requirements.in')) as f:
     required = f.read().splitlines()
@@ -15,7 +18,7 @@ with open(os.path.join(os.path.dirname(__file__), 'test_requirements.in')) as f:
 
 setup(
     name='zappa',
-    version=__version__,
+    version='0.50.0',
     packages=['zappa'],
     install_requires=required,
     tests_require=test_required,
