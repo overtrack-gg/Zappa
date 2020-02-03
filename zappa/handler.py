@@ -516,6 +516,11 @@ class LambdaHandler:
                     context_header_mappings=settings.CONTEXT_HEADER_MAPPINGS
                 )
 
+                
+                if 'HTTP_HOST' in os.environ and 'HTTP_HOST' in environ:
+                    print('Overriding HTTP_HOST with', os.environ['HTTP_HOST'])
+                    environ['HTTP_HOST'] = os.environ['HTTP_HOST']
+
                 # We are always on https on Lambda, so tell our wsgi app that.
                 environ['HTTPS'] = 'on'
                 environ['wsgi.url_scheme'] = 'https'
